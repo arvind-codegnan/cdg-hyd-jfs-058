@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This practice pack contains 10 independent use cases. Every use case has:
+This exercise pack contains 10 independent use cases. Every use case has:
 
 - exactly one entity/table;
 - a logical ER diagram;
@@ -72,7 +72,7 @@ erDiagram
 ```mermaid
 erDiagram
     STUDENTS {
-        INT_UNSIGNED student_id PK
+        INT student_id PK
         VARCHAR_15 admission_number UK
         VARCHAR_50 first_name
         VARCHAR_50 last_name
@@ -149,7 +149,7 @@ erDiagram
 ```mermaid
 erDiagram
     PRODUCTS {
-        INT_UNSIGNED product_id PK
+        INT product_id PK
         VARCHAR_20 sku UK
         VARCHAR_150 product_name
         VARCHAR_80 category
@@ -159,7 +159,7 @@ erDiagram
         INT_UNSIGNED reorder_level
         DATE manufacture_date
         DATE expiry_date
-        ENUM product_status
+        VARCHAR_15 product_status
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
@@ -167,7 +167,7 @@ erDiagram
 
 ## Physical requirements
 
-- `product_id`: primary key and `AUTO_INCREMENT`.
+- `product_id`: primary key.
 - Required: SKU, product name, category, unit price, stock quantity, reorder level, and status.
 - Nullable: brand, manufacture date, expiry date.
 - `sku`: unique.
