@@ -1,17 +1,16 @@
-# MySQL Single-Table ER Diagram Practice Pack
+# SQL Exercises Part 1
 
 ## Purpose
 
 This practice pack contains 10 independent use cases. Every use case has:
 
 - exactly one entity/table;
-- no relationships or foreign keys;
 - a logical ER diagram;
 - a physical MySQL ER diagram;
 - business rules and physical constraints; and
 - a learner task to write the `CREATE TABLE` statement.
 
-The `CREATE TABLE` solutions are intentionally omitted. Use the diagrams and requirements to build each table yourself.
+Use the diagrams and requirements to build each table yourself.
 
 ## General instructions
 
@@ -26,7 +25,7 @@ For every use case:
 7. Insert at least five valid rows.
 8. Try at least one invalid row to verify each `UNIQUE`, `NOT NULL`, `ENUM`, or `CHECK` rule.
 
-> Mermaid physical diagrams show compact type names such as `VARCHAR_15` for `VARCHAR(15)` and `DECIMAL_12_2` for `DECIMAL(12,2)`. Requirements such as `AUTO_INCREMENT`, `NOT NULL`, defaults, and checks are stated below each diagram.
+> physical diagrams show compact type names such as `VARCHAR_15` for `VARCHAR(15)` and `DECIMAL_12_2` for `DECIMAL(12,2)`. Requirements such as `AUTO_INCREMENT`, `NOT NULL`, defaults, and checks are stated below each diagram.
 
 ---
 
@@ -83,7 +82,7 @@ erDiagram
         VARCHAR_100 program_name
         DATE admission_date
         DECIMAL_4_2 cgpa
-        ENUM student_status
+        VARCHAR_15 student_status
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
@@ -91,7 +90,7 @@ erDiagram
 
 ## Physical requirements
 
-- `student_id`: primary key and `AUTO_INCREMENT`.
+- `student_id`: primary key.
 - Required: admission number, names, email, date of birth, program, admission date, CGPA, and status.
 - `phone`: nullable.
 - Unique constraints: `admission_number`, `email`.
