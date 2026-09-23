@@ -19,13 +19,11 @@ For every use case:
 1. Read the scenario and business rules.
 2. Study the logical ER diagram.
 3. Translate the physical diagram and requirements into MySQL DDL.
-4. Give every constraint a meaningful name where possible.
-5. Run `DESCRIBE table_name;` after creating the table.
-6. Run `SHOW CREATE TABLE table_name;` to confirm all keys, defaults, and checks.
-7. Insert at least five valid rows.
-8. Try at least one invalid row to verify each `UNIQUE`, `NOT NULL`, `ENUM`, or `CHECK` rule.
+4. Give every constraint a meaningful name.
+5. Insert at least five valid rows.
+6. Try at least one invalid row to verify each `UNIQUE`, `NOT NULL`, `ENUM`, or `CHECK` rule.
 
-> physical diagrams show compact type names such as `VARCHAR_15` for `VARCHAR(15)` and `DECIMAL_12_2` for `DECIMAL(12,2)`. Requirements such as `AUTO_INCREMENT`, `NOT NULL`, defaults, and checks are stated below each diagram.
+> Physical ER diagrams show compact type names such as `VARCHAR_15` for `VARCHAR(15)` and `DECIMAL_12_2` for `DECIMAL(12,2)`. Requirements such as `AUTO_INCREMENT`, `NOT NULL`, defaults, and checks are stated below each diagram.
 
 ---
 
@@ -90,7 +88,7 @@ erDiagram
 
 ## Physical requirements
 
-- `student_id`: primary key.
+- `student_id`: primary key and `AUTO_INCREMENT`.
 - Required: admission number, names, email, date of birth, program, admission date, CGPA, and status.
 - `phone`: nullable.
 - Unique constraints: `admission_number`, `email`.
@@ -167,7 +165,7 @@ erDiagram
 
 ## Physical requirements
 
-- `product_id`: primary key.
+- `product_id`: primary key and `AUTO_INCREMENT`.
 - Required: SKU, product name, category, unit price, stock quantity, reorder level, and status.
 - Nullable: brand, manufacture date, expiry date.
 - `sku`: unique.
@@ -230,7 +228,7 @@ erDiagram
 ```mermaid
 erDiagram
     CUSTOMERS {
-        BIGINT_UNSIGNED customer_id PK
+        INT customer_id PK
         VARCHAR_12 customer_code UK
         VARCHAR_50 first_name
         VARCHAR_50 last_name
@@ -240,7 +238,7 @@ erDiagram
         VARCHAR_80 city
         VARCHAR_80 state
         VARCHAR_12 postal_code
-        ENUM customer_type
+        VARCHAR_15 customer_type
         DECIMAL_12_2 credit_limit
         BOOLEAN is_active
         TIMESTAMP registered_at
@@ -309,17 +307,17 @@ erDiagram
 ```mermaid
 erDiagram
     BOOKS {
-        BIGINT_UNSIGNED book_id PK
+        INT book_id PK
         CHAR_13 isbn UK
         VARCHAR_200 title
         VARCHAR_120 author_name
         VARCHAR_60 genre
         VARCHAR_120 publisher
-        SMALLINT_UNSIGNED publication_year
-        SMALLINT_UNSIGNED page_count
-        ENUM book_format
+        SMALLINT publication_year
+        SMALLINT page_count
+        VARCHAR_20 book_format
         DECIMAL_10_2 price
-        INT_UNSIGNED copies_available
+        INT copies_available
         VARCHAR_40 language
         TIMESTAMP added_at
     }
@@ -387,19 +385,19 @@ erDiagram
 ```mermaid
 erDiagram
     PATIENTS {
-        BIGINT_UNSIGNED patient_id PK
+        INT patient_id PK
         VARCHAR_15 patient_number UK
         VARCHAR_50 first_name
         VARCHAR_50 last_name
         DATE date_of_birth
-        ENUM biological_sex
-        ENUM blood_group
+        VARCHAR_20 biological_sex
+        VARCHAR_20 blood_group
         VARCHAR_15 phone
         VARCHAR_120 email
         VARCHAR_100 emergency_contact_name
         VARCHAR_15 emergency_contact_phone
         TEXT allergies
-        ENUM patient_status
+        VARCHAR_20 patient_status
         TIMESTAMP registered_at
     }
 ```
@@ -464,17 +462,17 @@ erDiagram
 ```mermaid
 erDiagram
     BANK_ACCOUNTS {
-        BIGINT_UNSIGNED account_id PK
+        INT account_id PK
         CHAR_12 account_number UK
         VARCHAR_120 account_holder_name
-        ENUM account_type
+        VARCHAR_20 account_type
         DECIMAL_15_2 balance
         CHAR_3 currency_code
         VARCHAR_100 branch_name
         DATE opened_date
         DECIMAL_5_2 interest_rate
         DECIMAL_12_2 overdraft_limit
-        ENUM account_status
+        VARCHAR_20 account_status
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
@@ -542,19 +540,19 @@ erDiagram
 ```mermaid
 erDiagram
     VEHICLES {
-        BIGINT_UNSIGNED vehicle_id PK
+        INT vehicle_id PK
         VARCHAR_20 registration_number UK
         VARCHAR_120 owner_name
         VARCHAR_80 manufacturer
         VARCHAR_80 model
-        ENUM vehicle_type
-        ENUM fuel_type
+        VARCHAR_20 vehicle_type
+        VARCHAR_20 fuel_type
         YEAR manufacture_year
         DATE purchase_date
         VARCHAR_40 color
-        INT_UNSIGNED odometer_km
+        INT odometer_km
         DATE insurance_expiry
-        ENUM vehicle_status
+        VARCHAR_20 vehicle_status
         TIMESTAMP created_at
     }
 ```
@@ -619,14 +617,14 @@ erDiagram
 ```mermaid
 erDiagram
     HOTEL_ROOMS {
-        INT_UNSIGNED room_id PK
+        INT room_id PK
         VARCHAR_10 room_number UK
-        ENUM room_type
+        VARCHAR_20 room_type
         SMALLINT floor_number
-        TINYINT_UNSIGNED bed_count
-        TINYINT_UNSIGNED max_occupancy
+        TINYINT bed_count
+        TINYINT max_occupancy
         DECIMAL_10_2 price_per_night
-        ENUM availability_status
+        VARCHAR_20 availability_status
         BOOLEAN has_air_conditioning
         BOOLEAN smoking_allowed
         VARCHAR_255 notes
@@ -698,18 +696,18 @@ erDiagram
 ```mermaid
 erDiagram
     MOVIES {
-        BIGINT_UNSIGNED movie_id PK
+        INT movie_id PK
         VARCHAR_12 movie_code UK
         VARCHAR_200 title
         VARCHAR_60 genre
         VARCHAR_40 original_language
         DATE release_date
-        SMALLINT_UNSIGNED duration_minutes
+        SMALLINT duration_minutes
         VARCHAR_120 director_name
-        ENUM age_certificate
+        VARCHAR_20 age_certificate
         DECIMAL_3_1 audience_rating
         DECIMAL_15_2 production_budget
-        ENUM catalog_status
+        VARCHAR_20 catalog_status
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
@@ -780,15 +778,15 @@ erDiagram
 ```mermaid
 erDiagram
     SUPPORT_TICKETS {
-        BIGINT_UNSIGNED ticket_id PK
+        INT ticket_id PK
         VARCHAR_20 ticket_number UK
         VARCHAR_120 requester_name
         VARCHAR_120 requester_email
         VARCHAR_200 subject
         TEXT description
-        ENUM category
-        ENUM priority
-        ENUM ticket_status
+        VARCHAR_20 category
+        VARCHAR_20 priority
+        VARCHAR_20 ticket_status
         VARCHAR_120 assigned_agent
         TIMESTAMP created_at
         TIMESTAMP resolved_at
@@ -823,13 +821,11 @@ For each of the 10 tables, confirm the following before considering the exercise
 - [ ] Every required column is `NOT NULL`.
 - [ ] Every optional column accepts `NULL`.
 - [ ] All unique constraints are present.
-- [ ] All enumerated value lists are correct.
 - [ ] All defaults are correct.
 - [ ] All numeric and date checks are present.
 - [ ] Timestamp behaviour matches the requirements.
 - [ ] At least five valid rows were inserted.
 - [ ] Invalid inserts were attempted to confirm constraint enforcement.
-- [ ] `SHOW CREATE TABLE` was reviewed.
 
 ## Suggested completion order
 
