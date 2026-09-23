@@ -815,17 +815,17 @@ Create `support_tickets`. Test default priority/status, a null resolution time, 
 
 For each of the 10 tables, confirm the following before considering the exercise complete:
 
-- [ ] The table contains only the attributes shown for that use case.
-- [ ] No foreign keys or relationships were added.
-- [ ] The primary key uses the specified integer type and auto-increment behaviour.
-- [ ] Every required column is `NOT NULL`.
-- [ ] Every optional column accepts `NULL`.
-- [ ] All unique constraints are present.
-- [ ] All defaults are correct.
-- [ ] All numeric and date checks are present.
-- [ ] Timestamp behaviour matches the requirements.
-- [ ] At least five valid rows were inserted.
-- [ ] Invalid inserts were attempted to confirm constraint enforcement.
+- The table contains only the attributes shown for that use case.
+- No foreign keys or relationships were added.
+- The primary key uses the specified integer type and auto-increment behaviour.
+- Every required column is `NOT NULL`.
+- Every optional column accepts `NULL`.
+- All unique constraints are present.
+- All defaults are correct.
+- All numeric and date checks are present.
+- Timestamp behaviour matches the requirements.
+- At least five valid rows were inserted.
+- Invalid inserts were attempted to confirm constraint enforcement.
 
 ## Suggested completion order
 
