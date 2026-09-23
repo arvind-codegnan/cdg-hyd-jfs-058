@@ -21,7 +21,7 @@ For every use case:
 3. Translate the physical diagram and requirements into MySQL DDL.
 4. Give every constraint a meaningful name.
 5. Insert at least five valid rows.
-6. Try at least one invalid row to verify each `UNIQUE`, `NOT NULL`, `ENUM`, or `CHECK` rule.
+6. Try at least one invalid row to verify each `UNIQUE`, `NOT NULL`, or `CHECK` rule.
 
 > Physical ER diagrams show compact type names such as `VARCHAR_15` for `VARCHAR(15)` and `DECIMAL_12_2` for `DECIMAL(12,2)`. Requirements such as `AUTO_INCREMENT`, `NOT NULL`, defaults, and checks are stated below each diagram.
 
