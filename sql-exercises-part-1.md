@@ -8,7 +8,7 @@ This exercise pack contains 10 independent use cases. Every use case has:
 - a logical ER diagram;
 - a physical MySQL ER diagram;
 - business rules and physical constraints; and
-- a learner task to write the `CREATE TABLE` statement.
+- a learner task to write SQL statement.
 
 Use the diagrams and requirements to build each table yourself.
 
