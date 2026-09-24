@@ -1,4 +1,4 @@
-# MySQL INSERT, UPDATE, and DELETE Practice Pack
+# SQL Exercises Part 2
 
 ## Purpose
 
@@ -15,33 +15,15 @@ This exercise pack reuses the 10 standalone tables from the earlier table-design
 9. `movies`
 10. `support_tickets`
 
-The exercises focus on writing safe and correct `INSERT`, `UPDATE`, and `DELETE` statements. SQL solutions are intentionally omitted.
+The exercises focus on correct `INSERT`, `UPDATE`, and `DELETE` statements.
 
 ## Prerequisites
 
 - Create all 10 tables using the earlier DDL exercise pack.
-- Use MySQL 8.x or a compatible MySQL version.
-- Execute these exercises only in a practice database.
-- Use fictional data only, especially for patient and bank-account exercises.
-
-## Safe DML Workflow
-
-Follow this process before every `UPDATE` or `DELETE` exercise:
-
-1. Write a `SELECT` statement using the proposed `WHERE` condition.
-2. Confirm that only the intended rows are returned.
-3. Start a transaction when testing a risky operation.
-4. Execute the `UPDATE` or `DELETE` statement.
-5. Check the affected-row count.
-6. Verify the result using `SELECT`.
-7. Use `COMMIT` only when the result is correct; otherwise use `ROLLBACK`.
-
-> Never execute an `UPDATE` or `DELETE` without a `WHERE` clause unless the exercise explicitly requires all rows to be changed or removed.
 
 ## General Instructions
 
 - Complete each use case in the order shown: Insert, Update, and then Delete.
-- The exercises inside each use case are cumulative.
 - Always provide an explicit column list in an `INSERT` statement.
 - Do not manually insert auto-generated primary-key values.
 - Allow timestamp defaults to operate unless an exercise says otherwise.
@@ -85,7 +67,6 @@ Use the following data. Allow `student_id`, `created_at`, and `updated_at` to be
 
 1. **STU-D1:** Preview and permanently delete students whose status is `DROPPED`. Expect one row from the supplied data.
 2. **STU-D2:** Insert a temporary student with admission number `STU-TEMP-001`, verify it, and delete only that row.
-3. **STU-D3:** Start a transaction, delete all students in `BA Economics`, verify the temporary result, and then roll back the deletion.
 
 ---
 
@@ -124,7 +105,6 @@ Allow the primary key and timestamp columns to be generated automatically.
 
 1. **PRD-D1:** Preview and delete the product identified by `SKU-OLD-005`.
 2. **PRD-D2:** Insert a temporary product with SKU `SKU-TEMP-999` and then delete it using its SKU.
-3. **PRD-D3:** Start a transaction, delete every product in `Stationery`, check the temporary result, and roll back.
 
 ---
 
@@ -162,7 +142,6 @@ Allow `customer_id` and `registered_at` to be generated automatically.
 
 1. **CUS-D1:** Preview and delete inactive customers. Expect `CUST26005` to match.
 2. **CUS-D2:** Insert a temporary customer with code `CUST-TEMP-01` and delete only that row.
-3. **CUS-D3:** Start a transaction, delete all `REGULAR` customers, verify the temporary result, and roll back.
 
 ---
 
@@ -201,7 +180,6 @@ Allow `book_id` and `added_at` to be generated automatically.
 
 1. **BOK-D1:** Preview and delete the fictional book identified by ISBN `9780000000001`.
 2. **BOK-D2:** Insert a temporary book with ISBN `9780000000999` and delete it by ISBN.
-3. **BOK-D3:** Start a transaction, delete every `EBOOK`, inspect the result, and roll back.
 
 ---
 
@@ -240,9 +218,6 @@ All names and contact details below are fictional. Allow the primary key and reg
 
 1. **PAT-D1:** Preview and delete the inactive fictional patient `PT26004`.
 2. **PAT-D2:** Insert a fictional temporary patient with number `PT-TEMP-01` and then delete it.
-3. **PAT-D3:** Start a transaction, delete all active patient rows, verify the temporary result, and roll back.
-
-> Production healthcare systems normally retain or archive patient records rather than physically deleting them. These deletions are strictly for SQL practice.
 
 ---
 
@@ -281,9 +256,6 @@ All account information is fictional. Allow primary-key and timestamp values to 
 
 1. **BNK-D1:** Preview and delete the fictional closed account having a zero balance.
 2. **BNK-D2:** Insert a temporary account numbered `999999999999` and delete only that account.
-3. **BNK-D3:** Start a transaction, delete all fixed-deposit accounts, inspect the result, and roll back.
-
-> Real banking systems do not normally delete account history. These operations apply only to the fictional training table.
 
 ---
 
@@ -321,7 +293,6 @@ Allow the primary key and creation timestamp to be generated automatically.
 
 1. **VEH-D1:** Preview and delete the fictional scrapped vehicle `TN10JK7890`.
 2. **VEH-D2:** Insert a temporary vehicle with registration `TEST00TMP01` and then delete it.
-3. **VEH-D3:** Start a transaction, delete vehicles having no insurance-expiry date, inspect the temporary result, and roll back.
 
 ---
 
@@ -359,7 +330,6 @@ Allow the primary key and timestamp columns to be generated automatically.
 
 1. **ROM-D1:** Preview and delete the training room `T99`.
 2. **ROM-D2:** Insert a temporary room numbered `TMP1` and then delete it by room number.
-3. **ROM-D3:** Start a transaction, delete all rooms on floor `3`, verify the result, and roll back.
 
 ---
 
@@ -397,7 +367,6 @@ The movie data below is fictional. Allow the primary key and timestamp columns t
 
 1. **MOV-D1:** Preview and delete the archived fictional movie `MOV24005`.
 2. **MOV-D2:** Insert a temporary movie with code `MOV-TEMP-01` and then delete it.
-3. **MOV-D3:** Start a transaction, delete every upcoming movie, inspect the temporary result, and roll back.
 
 ---
 
@@ -436,9 +405,6 @@ Allow `ticket_id`, `created_at`, and `last_updated_at` to be generated automatic
 
 1. **TKT-D1:** Preview and delete the temporary resolved ticket `TKT-26005`.
 2. **TKT-D2:** Insert a ticket numbered `TKT-TEMP-01` and delete only that ticket.
-3. **TKT-D3:** Start a transaction, delete all resolved tickets, inspect the result, and roll back.
-
-> Production support systems commonly archive tickets instead of physically deleting them. These deletions are for SQL practice only.
 
 ---
 
@@ -459,31 +425,10 @@ Complete these tasks after finishing all 10 sections:
 
 # Submission Checklist
 
-- [ ] Every `INSERT` uses an explicit column list.
-- [ ] Auto-generated columns are omitted where appropriate.
-- [ ] SQL `NULL` is not enclosed in quotation marks.
-- [ ] Multi-row inserts use correct value ordering.
-- [ ] Every update was previewed with a matching `SELECT` condition.
-- [ ] Every delete was previewed with a matching `SELECT` condition.
-- [ ] Single-row changes use a unique identifier in the `WHERE` clause.
-- [ ] Multi-row changes have a documented reason.
-- [ ] Constraint failures were recorded without weakening the table design.
-- [ ] Risky operations were tested inside transactions.
-- [ ] `ROLLBACK` and `COMMIT` were each demonstrated.
-- [ ] Final table contents were verified after every section.
-
-# Suggested Assessment Rubric
-
-| Area | Marks |
-|---|---:|
-| Correct single-row inserts | 10 |
-| Correct multi-row inserts | 10 |
-| Handling optional values and defaults | 10 |
-| Correct single-row updates | 10 |
-| Correct conditional multi-row updates | 10 |
-| Safe arithmetic updates | 10 |
-| Correct targeted deletes | 10 |
-| Transaction and rollback practice | 10 |
-| Constraint-error observations | 10 |
-| Verification, formatting, and safe `WHERE` usage | 10 |
-| **Total** | **100** |
+- Every `INSERT` uses an explicit column list.
+- Auto-generated columns are omitted where appropriate.
+- SQL `NULL` is not enclosed in quotation marks.
+- Multi-row inserts use correct value ordering.
+- Every update was previewed with a matching `SELECT` condition.
+- Every delete was previewed with a matching `SELECT` condition.
+- Single-row changes use a unique identifier in the `WHERE` clause.
