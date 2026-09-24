@@ -1,4 +1,6 @@
-# SQL Exercises Part 1
+# SQL Exercises
+
+## Part 1
 
 ## Purpose
 
