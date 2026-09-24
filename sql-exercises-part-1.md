@@ -37,6 +37,31 @@ For every use case:
 
 A college needs one table containing the current academic profile of each student. Department and program information are stored as text because this exercise must not use related tables.
 
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    STUDENT_ID(["Student ID (key)"]):::key --- STUDENT["STUDENT"]:::entity
+    ADMISSION(["Admission number"]):::attribute --- STUDENT
+    FIRST_NAME(["First name"]):::attribute --- STUDENT
+    LAST_NAME(["Last name"]):::attribute --- STUDENT
+    EMAIL(["Email"]):::attribute --- STUDENT
+    PHONE(["Phone"]):::attribute --- STUDENT
+
+    STUDENT --- DOB(["Date of birth"]):::attribute
+    STUDENT --- PROGRAM(["Programme name"]):::attribute
+    STUDENT --- ADMISSION_DATE(["Admission date"]):::attribute
+    STUDENT --- CGPA(["CGPA"]):::attribute
+    STUDENT --- STATUS(["Student status"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Student  
+**Key attribute:** Student ID
+
 ## Logical ER diagram
 
 ```mermaid
@@ -112,6 +137,31 @@ Write and execute the MySQL statement that creates `students` with all specified
 ## Scenario
 
 A small shop needs one table for its product catalogue and current stock levels. Category and brand are stored in the same table to keep the exercise relation-free.
+
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    PRODUCT_ID(["Product ID (key)"]):::key --- PRODUCT["PRODUCT"]:::entity
+    SKU(["SKU"]):::attribute --- PRODUCT
+    NAME(["Product name"]):::attribute --- PRODUCT
+    CATEGORY(["Category"]):::attribute --- PRODUCT
+    BRAND(["Brand"]):::attribute --- PRODUCT
+    PRICE(["Unit price"]):::attribute --- PRODUCT
+
+    PRODUCT --- STOCK(["Quantity in stock"]):::attribute
+    PRODUCT --- REORDER(["Reorder level"]):::attribute
+    PRODUCT --- MFG_DATE(["Manufacture date"]):::attribute
+    PRODUCT --- EXPIRY(["Expiry date"]):::attribute
+    PRODUCT --- STATUS(["Product status"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Product  
+**Key attribute:** Product ID
 
 ## Logical ER diagram
 
@@ -193,6 +243,33 @@ Create `products`, then test it with one normal product, one product without an 
 
 A retailer needs one table for customer identity, contact information, location, customer category, and credit settings.
 
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    CUSTOMER_ID(["Customer ID (key)"]):::key --- CUSTOMER["CUSTOMER"]:::entity
+    CODE(["Customer code"]):::attribute --- CUSTOMER
+    FIRST_NAME(["First name"]):::attribute --- CUSTOMER
+    LAST_NAME(["Last name"]):::attribute --- CUSTOMER
+    EMAIL(["Email"]):::attribute --- CUSTOMER
+    PHONE(["Phone"]):::attribute --- CUSTOMER
+    DOB(["Date of birth"]):::attribute --- CUSTOMER
+
+    CUSTOMER --- CITY(["City"]):::attribute
+    CUSTOMER --- STATE(["State"]):::attribute
+    CUSTOMER --- POSTAL(["Postal code"]):::attribute
+    CUSTOMER --- TYPE(["Customer type"]):::attribute
+    CUSTOMER --- CREDIT(["Credit limit"]):::attribute
+    CUSTOMER --- ACTIVE(["Active status"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Customer  
+**Key attribute:** Customer ID
+
 ## Logical ER diagram
 
 ```mermaid
@@ -272,6 +349,32 @@ Create `customers`. Verify that MySQL accepts multiple `NULL` phone values but r
 
 A bookstore needs a single table describing each book and its available quantity. Author, genre, and publisher remain text attributes for this exercise.
 
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    BOOK_ID(["Book ID (key)"]):::key --- BOOK["BOOK"]:::entity
+    ISBN(["ISBN"]):::attribute --- BOOK
+    TITLE(["Title"]):::attribute --- BOOK
+    AUTHOR(["Author name"]):::attribute --- BOOK
+    GENRE(["Genre"]):::attribute --- BOOK
+    PUBLISHER(["Publisher"]):::attribute --- BOOK
+
+    BOOK --- PUB_YEAR(["Publication year"]):::attribute
+    BOOK --- PAGES(["Page count"]):::attribute
+    BOOK --- FORMAT(["Book format"]):::attribute
+    BOOK --- PRICE(["Price"]):::attribute
+    BOOK --- COPIES(["Copies available"]):::attribute
+    BOOK --- LANGUAGE(["Language"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Book  
+**Key attribute:** Book ID
+
 ## Logical ER diagram
 
 ```mermaid
@@ -349,6 +452,33 @@ Create `books` and test the year, page-count, ISBN, and format constraints with 
 ## Scenario
 
 A small clinic needs a one-table patient-registration exercise. It stores identity, contact information, emergency contact information, and a short allergy note. Use fictional data only.
+
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    PATIENT_ID(["Patient ID (key)"]):::key --- PATIENT["PATIENT"]:::entity
+    NUMBER(["Patient number"]):::attribute --- PATIENT
+    FIRST_NAME(["First name"]):::attribute --- PATIENT
+    LAST_NAME(["Last name"]):::attribute --- PATIENT
+    DOB(["Date of birth"]):::attribute --- PATIENT
+    SEX(["Biological sex"]):::attribute --- PATIENT
+    BLOOD(["Blood group"]):::attribute --- PATIENT
+
+    PATIENT --- PHONE(["Phone"]):::attribute
+    PATIENT --- EMAIL(["Email"]):::attribute
+    PATIENT --- EMERGENCY_NAME(["Emergency contact name"]):::attribute
+    PATIENT --- EMERGENCY_PHONE(["Emergency contact phone"]):::attribute
+    PATIENT --- ALLERGIES(["Allergies"]):::attribute
+    PATIENT --- STATUS(["Patient status"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Patient  
+**Key attribute:** Patient ID
 
 ## Logical ER diagram
 
@@ -428,6 +558,31 @@ Create `patients`, including both `ENUM` definitions, and verify that an unsuppo
 
 A training application needs a simplified, denormalised account table. It is for SQL practice only and must not be used as a real banking design.
 
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    ACCOUNT_ID(["Account ID (key)"]):::key --- ACCOUNT["BANK ACCOUNT"]:::entity
+    NUMBER(["Account number"]):::attribute --- ACCOUNT
+    HOLDER(["Account holder name"]):::attribute --- ACCOUNT
+    TYPE(["Account type"]):::attribute --- ACCOUNT
+    BALANCE(["Balance"]):::attribute --- ACCOUNT
+    CURRENCY(["Currency code"]):::attribute --- ACCOUNT
+
+    ACCOUNT --- BRANCH(["Branch name"]):::attribute
+    ACCOUNT --- OPENED(["Opened date"]):::attribute
+    ACCOUNT --- INTEREST(["Interest rate"]):::attribute
+    ACCOUNT --- OVERDRAFT(["Overdraft limit"]):::attribute
+    ACCOUNT --- STATUS(["Account status"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Bank Account  
+**Key attribute:** Account ID
+
 ## Logical ER diagram
 
 ```mermaid
@@ -503,6 +658,33 @@ Create `bank_accounts`. Insert examples for all three account types and test the
 ## Scenario
 
 A parking and vehicle-tracking application needs one row for each registered vehicle. Owner data is intentionally stored as text so there is no relationship to another table.
+
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    VEHICLE_ID(["Vehicle ID (key)"]):::key --- VEHICLE["VEHICLE"]:::entity
+    REGISTRATION(["Registration number"]):::attribute --- VEHICLE
+    OWNER(["Owner name"]):::attribute --- VEHICLE
+    MAKER(["Manufacturer"]):::attribute --- VEHICLE
+    MODEL(["Model"]):::attribute --- VEHICLE
+    TYPE(["Vehicle type"]):::attribute --- VEHICLE
+    FUEL(["Fuel type"]):::attribute --- VEHICLE
+
+    VEHICLE --- YEAR(["Manufacture year"]):::attribute
+    VEHICLE --- PURCHASE(["Purchase date"]):::attribute
+    VEHICLE --- COLOR(["Colour"]):::attribute
+    VEHICLE --- ODOMETER(["Odometer distance"]):::attribute
+    VEHICLE --- INSURANCE(["Insurance expiry"]):::attribute
+    VEHICLE --- STATUS(["Vehicle status"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Vehicle  
+**Key attribute:** Vehicle ID
 
 ## Logical ER diagram
 
@@ -583,6 +765,31 @@ Create `vehicles` and test all vehicle and fuel types. Also test a row without p
 
 A hotel needs one table describing each room, its capacity, nightly rate, amenities, and current availability.
 
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    ROOM_ID(["Room ID (key)"]):::key --- ROOM["HOTEL ROOM"]:::entity
+    NUMBER(["Room number"]):::attribute --- ROOM
+    TYPE(["Room type"]):::attribute --- ROOM
+    FLOOR(["Floor number"]):::attribute --- ROOM
+    BEDS(["Bed count"]):::attribute --- ROOM
+    OCCUPANCY(["Maximum occupancy"]):::attribute --- ROOM
+
+    ROOM --- PRICE(["Price per night"]):::attribute
+    ROOM --- AVAILABILITY(["Availability status"]):::attribute
+    ROOM --- AC(["Air conditioning"]):::attribute
+    ROOM --- SMOKING(["Smoking allowed"]):::attribute
+    ROOM --- NOTES(["Notes"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Hotel Room  
+**Key attribute:** Room ID
+
 ## Logical ER diagram
 
 ```mermaid
@@ -659,6 +866,32 @@ Create `hotel_rooms`. Insert examples for all four room types and verify that ze
 ## Scenario
 
 A streaming catalogue needs a single table containing descriptive and release information for each movie. Directors and genres remain text values.
+
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    MOVIE_ID(["Movie ID (key)"]):::key --- MOVIE["MOVIE"]:::entity
+    CODE(["Movie code"]):::attribute --- MOVIE
+    TITLE(["Title"]):::attribute --- MOVIE
+    GENRE(["Genre"]):::attribute --- MOVIE
+    LANGUAGE(["Original language"]):::attribute --- MOVIE
+    RELEASE(["Release date"]):::attribute --- MOVIE
+
+    MOVIE --- DURATION(["Duration in minutes"]):::attribute
+    MOVIE --- DIRECTOR(["Director name"]):::attribute
+    MOVIE --- CERTIFICATE(["Age certificate"]):::attribute
+    MOVIE --- RATING(["Audience rating"]):::attribute
+    MOVIE --- BUDGET(["Production budget"]):::attribute
+    MOVIE --- STATUS(["Catalogue status"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Movie  
+**Key attribute:** Movie ID
 
 ## Logical ER diagram
 
@@ -740,6 +973,33 @@ Create `movies`, then test an upcoming movie with unknown release information an
 ## Scenario
 
 A small support desk needs one table for customer requests, assignment, priority, progress, and resolution time. Requester and assigned-agent details are text attributes to avoid relations.
+
+## Conceptual ER diagram
+
+```mermaid
+flowchart LR
+    TICKET_ID(["Ticket ID (key)"]):::key --- TICKET["SUPPORT TICKET"]:::entity
+    NUMBER(["Ticket number"]):::attribute --- TICKET
+    REQUESTER(["Requester name"]):::attribute --- TICKET
+    EMAIL(["Requester email"]):::attribute --- TICKET
+    SUBJECT(["Subject"]):::attribute --- TICKET
+    DESCRIPTION(["Description"]):::attribute --- TICKET
+    CATEGORY(["Category"]):::attribute --- TICKET
+
+    TICKET --- PRIORITY(["Priority"]):::attribute
+    TICKET --- STATUS(["Ticket status"]):::attribute
+    TICKET --- AGENT(["Assigned agent"]):::attribute
+    TICKET --- CREATED(["Created time"]):::attribute
+    TICKET --- RESOLVED(["Resolved time"]):::attribute
+    TICKET --- UPDATED(["Last updated time"]):::attribute
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,stroke-width:2px,color:#111827;
+    classDef attribute fill:#ffffff,stroke:#475569,stroke-width:1.5px,color:#111827;
+    classDef key fill:#fef3c7,stroke:#92400e,stroke-width:3px,color:#111827;
+```
+
+**Entity:** Support Ticket  
+**Key attribute:** Ticket ID
 
 ## Logical ER diagram
 
