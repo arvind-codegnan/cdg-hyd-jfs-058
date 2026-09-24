@@ -1,5 +1,3 @@
-# SQL Exercises
-
 ## Part 1
 
 ## Purpose
